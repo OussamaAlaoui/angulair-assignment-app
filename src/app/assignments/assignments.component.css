@@ -1,0 +1,19 @@
+.due {
+  color: green;
+}
+
+.nonRendu {
+  color: red;
+  background-color: yellow;
+  border-color: 2px solid red;
+}
+
+.container{
+  margin: 20px;
+  display: flex; display: flex;
+  flex-direction: column;
+
+}
+.addButton{
+  align-self: flex-end;
+}
