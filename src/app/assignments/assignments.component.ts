@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Assignment } from './assignment.model';
 
 @Component({
@@ -26,6 +26,7 @@ export class AssignmentsComponent implements OnInit {
       due: true,
     },
   ];
+  // @Input() assignmentToDelete?:Assignment;
  formVisible:boolean = false;
   nameAssignment: string = '';
   dueDate?: Date = undefined; // ?:it means it is possible to be null
@@ -39,6 +40,8 @@ export class AssignmentsComponent implements OnInit {
     //   console.log('called after 3s...');
     //   this.ajoutActive = false;
     // }, 3000);
+// if(this.assignmentToDelete)
+    // this.assignments.splice(this.assignments.indexOf(this.assignmentToDelete,1))
   }
   addAssignmentClick(){
     this.formVisible=true;
@@ -66,5 +69,11 @@ export class AssignmentsComponent implements OnInit {
   assignmentClick(assignment:Assignment){
     // console.log("This assignment was clicked: ", assignment.name)
     this.selectedAssignment=assignment;
+  }
+  deleteTransmittedAssignment(assignment:Assignment){
+    console.log(assignment);
+    this.assignments.splice(this.assignments.indexOf(assignment),1);
+    this.selectedAssignment=undefined;
+
   }
 }

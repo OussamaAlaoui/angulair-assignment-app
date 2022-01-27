@@ -2,5 +2,7 @@
     
 <mat-card-header><h1>{{transmittedAssignment.name}}</h1> </mat-card-header> 
 <mat-card-subtitle>{{transmittedAssignment.dueDate}}</mat-card-subtitle>
-<mat-checkbox *ngIf="!transmittedAssignment.due" (click)="checkAssignment()">The assignment is returned</mat-checkbox>
+<!-- <mat-checkbox *ngIf="!transmittedAssignment.due" (click)="checkAssignment()">The assignment is returned</mat-checkbox> -->
+<button class="button-delete" mat-flat-button color="warn" (click)="deleteAssignment(transmittedAssignment)" >Delete</button>
 </mat-card>
+<!-- <app-assignments [assignmentToDelete]="assignmentDelete"></app-assignments> -->
