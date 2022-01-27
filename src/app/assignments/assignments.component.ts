@@ -27,22 +27,22 @@ export class AssignmentsComponent implements OnInit {
       due: true,
     },
   ];
- formVisible:boolean = false;
+  formVisible: boolean = false;
   nameAssignment: string = '';
   dueDate?: Date = undefined; // ?:it means it is possible to be null
   // we inject things in the constructor 
-  constructor(private assignmentsService:AssignmentsService ) { }
+  constructor(private assignmentsService: AssignmentsService) { }
   selectedAssignment?: Assignment = undefined;
   ngOnInit(): void {
     // get the assignments from the service 
     // the service will a request AJAX on a web service
     console.log("We are getting the assignments from the service!!")
-     this.assignmentsService.getAssignments().subscribe(assignments=> {
-       // here we are sure that the data is here, basically it replaces the async await 
-       console.log("We received the data")
-       this.assignments= assignments;
-     });
-     console.log("request is send to the service");
+    this.assignmentsService.getAssignments().subscribe(assignments => {
+      // here we are sure that the data is here, basically it replaces the async await 
+      console.log("We received the data")
+      this.assignments = assignments;
+    });
+    console.log("request is send to the service");
     // this is where we define thing that will be executed before displaying anything
     // called before the displaying
     // console.log('before displaying');
@@ -62,7 +62,7 @@ export class AssignmentsComponent implements OnInit {
 
     // console.log(assignment);
     // this.assignments.push(assignment);
-    this.assignmentsService.addAssignment(assignment).subscribe(message => {console.log(message);    this.formVisible = false;});
+    this.assignmentsService.addAssignment(assignment).subscribe(message => { console.log(message); this.formVisible = false; });
 
   }
   // onSubmit() {
