@@ -1,5 +1,4 @@
-import { Component, Input,EventEmitter, OnInit, Output } from '@angular/core';
-
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Assignment } from '../assignments/assignment.model';
 import { AssignmentsService } from '../shared/assignments.service';
 
@@ -23,8 +22,4 @@ export class AssignmentDetailComponent implements OnInit {
     this.assignmentService.updateAssignment(this.transmittedAssignment).subscribe(message=>console.log(message));
     // this.transmittedAssignment.due=true;
   }
-  deleteAssignment(assignment:Assignment){
-    this.deleteAssignmentEvent.emit(assignment);
-  }
-
 }

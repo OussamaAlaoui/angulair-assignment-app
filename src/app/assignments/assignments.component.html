@@ -27,6 +27,16 @@
 
         </mat-list-item></div>
 
+      <h3 mat-subheader> {{ assignment.dueDate | date :'short'}}</h3>
+      <mat-list-item (click)="assignmentClick(assignment)">
+        <p appRendu *ngIf="assignment.due; else nonsoumis">
+          {{ i }} - {{ assignment.name }} a été due par l'élève.
+        </p>
+        <ng-template #nonsoumis>
+          <p appNonRendu>
+            {{ i }} - {{ assignment.name }} n'a pas été due par l'élève.
+          </p>
+        </ng-template></mat-list-item>
       <mat-divider></mat-divider>
     </mat-list></span>
 
