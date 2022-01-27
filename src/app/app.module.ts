@@ -19,6 +19,23 @@ import {MatListModule} from '@angular/material/list';
 import { MatCardModule} from '@angular/material/card'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AddAssignmentComponent } from './add-assignment/add-assignment.component';
+import { Routes, RouterModule } from '@angular/router'; 
+
+const routes: Routes =[
+  {
+    path:'',
+    component: AssignmentsComponent
+  },
+  {
+    path:'home',
+    component: AssignmentsComponent
+  },
+  {
+    path:'add',
+    component: AddAssignmentComponent
+  }
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +59,8 @@ import { AddAssignmentComponent } from './add-assignment/add-assignment.componen
     MatDividerModule,
     MatListModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,RouterModule.forRoot(routes)
+
     
   ],
   providers: [],

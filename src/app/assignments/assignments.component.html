@@ -1,22 +1,24 @@
 <!-- <p>assignments works!</p> -->
 <div class="container">
-  <h1>{{ titre }}</h1>
-  <button class="addButton" *ngIf="!formVisible" mat-raised-button
-    color="primary" (click)="addAssignmentClick()">Add new Assignment</button>
-  <mat-card *ngIf="formVisible">
+  <h1><b>{{ titre }}</b> </h1>
+  <!-- <button class="addButton" *ngIf="!formVisible" mat-raised-button
+    color="primary" (click)="addAssignmentClick()">Add new Assignment</button> -->
+  <button class="addButton" mat-raised-button
+    color="primary" routerLink="/add">Add new Assignment</button>
+  <!-- <mat-card>
     <app-add-assignment
-      (addNewAssignment)="addAssignment($event)"></app-add-assignment></mat-card>
+      (addNewAssignment)="addAssignment($event)"></app-add-assignment></mat-card> -->
   <!-- <h2 *ngIf="selectedAssignment!=null">The selected Assignment: {{selectedAssignment.name}}</h2> -->
   <!-- <mat-divider></mat-divider> -->
-  <span *ngIf="!formVisible"> <h1>Assignment's List</h1>
+  <span> <h1>Assignment's List</h1>
     <mat-list *ngFor="let assignment of assignments; let i= index">
-      <div class="list-item"> 
+      <div class="list-item">
         <h3 mat-subheader> {{ assignment.dueDate | date :'short'}}</h3>
         <mat-list-item (click)="assignmentClick(assignment)">
           <p appRendu *ngIf="assignment.due; else nonsoumis">
             {{ i }} - {{ assignment.name }} a été due par l'élève.
-          </p> 
-          
+          </p>
+
           <ng-template #nonsoumis>
             <p appNonRendu>
               {{ i }} - {{ assignment.name }} n'a pas été due par l'élève.
@@ -32,5 +34,7 @@
   <!-- <h1>{{ nameAssignment }}</h1> -->
   <template></template>
 
-  <app-assignment-detail (deleteAssignmentEvent)="deleteTransmittedAssignment($event)" [transmittedAssignment]="selectedAssignment"></app-assignment-detail>
+  <app-assignment-detail
+    (deleteAssignmentEvent)="deleteTransmittedAssignment($event)"
+    [transmittedAssignment]="selectedAssignment"></app-assignment-detail>
 </div>
