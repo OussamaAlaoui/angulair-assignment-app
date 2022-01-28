@@ -38,20 +38,20 @@ export class AssignmentsService {
     return of(this.assignments);
   }
   addAssignment(assignment:Assignment):Observable<string>{
-    console.log("Adding an assignment through service ....")
+    //console.log("Adding an assignment through service ....")
     this.assignments.push(assignment);
     return of("The assignment is added successfully");
   }
 
   updateAssignment(assignment:Assignment):Observable<string>{
-    console.log("updating an assignment through service ....")
+    //console.log("updating an assignment through service ....")
     // assignment.name=
     assignment.due = true;
     return of("the assignment has been updated successfully");
   }
 
   deleteAssignment(assignment:Assignment):Observable<String>{
-    console.log("Deleting an assignment through service ....")
+    //console.log("Deleting an assignment through service ....")
     this.assignments.splice(this.assignments.indexOf(assignment),1);
     return of("The assignment has been deleted successfully!!");
   }
@@ -65,7 +65,7 @@ export class AssignmentsService {
 
 
   updateAssignmentData(assignment:Assignment):Observable<string>{
-    console.log("The assignment data has been updated");
+    //console.log("The assignment data has been updated");
 
     return of("The assignment data has been updated");
   }
