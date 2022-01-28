@@ -19,7 +19,8 @@ import {MatListModule} from '@angular/material/list';
 import { MatCardModule} from '@angular/material/card'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AddAssignmentComponent } from './add-assignment/add-assignment.component';
-import { Routes, RouterModule } from '@angular/router'; 
+import { Routes, RouterModule } from '@angular/router';
+import { EditAssignmentComponent } from './edit-assignment/edit-assignment.component'; 
 
 const routes: Routes =[
   {
@@ -33,6 +34,14 @@ const routes: Routes =[
   {
     path:'add',
     component: AddAssignmentComponent
+  },
+  {
+    path:'assignment/:id',
+    component: AssignmentDetailComponent
+  },
+  {
+    path:'assignment/:id/edit',
+    component: EditAssignmentComponent
   }
 ]
 
@@ -44,6 +53,7 @@ const routes: Routes =[
     NonRenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
+    EditAssignmentComponent,
   ],
   imports: [
     BrowserModule,

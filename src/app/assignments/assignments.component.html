@@ -1,38 +1,30 @@
-<!-- <p>assignments works!</p> -->
 <div class="container">
   <h1><b>{{ titre }}</b> </h1>
-  <!-- <button class="addButton" *ngIf="!formVisible" mat-raised-button
-    color="primary" (click)="addAssignmentClick()">Add new Assignment</button> -->
-  <button class="addButton" mat-raised-button
-    color="primary" routerLink="/add">Add new Assignment</button>
-  <!-- <mat-card>
-    <app-add-assignment
-      (addNewAssignment)="addAssignment($event)"></app-add-assignment></mat-card> -->
-  <!-- <h2 *ngIf="selectedAssignment!=null">The selected Assignment: {{selectedAssignment.name}}</h2> -->
-  <!-- <mat-divider></mat-divider> -->
-  <span> <h1>Assignment's List</h1>
+  <button class="addButton" mat-raised-button color="primary" routerLink="/add">Add new Assignment</button>
+  <span>
+    <h1>Assignment's List</h1>
     <mat-list *ngFor="let assignment of assignments; let i= index">
+      <nav>
+        <a routerLink="/assignment/{{assignment.id}}">
+          <h3 mat-subheader> {{ assignment.dueDate | date :'short'}}</h3>
+          <div class="list-items">
+            <mat-list-item>
+              <p appRendu *ngIf="assignment.due; else nonsoumis">
+                {{ i }} - {{ assignment.name }} a été due par l'élève.
+              </p>
+              <ng-template #nonsoumis>
+                <p appNonRendu>
+                  {{ i }} - {{ assignment.name }} n'a pas été due par l'élève.
+                </p>
+              </ng-template>
+            </mat-list-item>
+           
+          </div>
+        </a>
 
-     
-
-      <h3 mat-subheader> {{ assignment.dueDate | date :'short'}}</h3>
-      <mat-list-item (click)="assignmentClick(assignment)">
-        <p appRendu *ngIf="assignment.due; else nonsoumis">
-          {{ i }} - {{ assignment.name }} a été due par l'élève.
-        </p>
-        <ng-template #nonsoumis>
-          <p appNonRendu>
-            {{ i }} - {{ assignment.name }} n'a pas été due par l'élève.
-          </p>
-        </ng-template></mat-list-item>
+      </nav>
       <mat-divider></mat-divider>
-    </mat-list></span>
-
-
-  <!-- <h1>{{ nameAssignment }}</h1> -->
+    </mat-list>
+  </span>
   <template></template>
-
-  <app-assignment-detail
-    (deleteAssignmentEvent)="deleteTransmittedAssignment($event)"
-    [transmittedAssignment]="selectedAssignment"></app-assignment-detail>
 </div>

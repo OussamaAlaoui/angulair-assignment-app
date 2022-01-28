@@ -1,3 +1,4 @@
+import { unescapeIdentifier } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Assignment } from '../assignments/assignment.model';
@@ -9,16 +10,19 @@ import { Assignment } from '../assignments/assignment.model';
 export class AssignmentsService {
   assignments: Assignment[] = [
     {
+      id:1,
       name: 'Devoir Angular 1',
       dueDate: new Date('2022-01-23'),
       due: false,
     },
     {
+      id:2,
       name: 'Devoir Angular 2',
       dueDate: new Date('2022-01-23'),
       due: false,
     },
     {
+      id:3,
       name: 'Devoir Angular 3',
       dueDate: new Date('2022-01-23'),
       due: true,
@@ -41,7 +45,7 @@ export class AssignmentsService {
 
   updateAssignment(assignment:Assignment):Observable<string>{
     console.log("updating an assignment through service ....")
-
+    // assignment.name=
     assignment.due = true;
     return of("the assignment has been updated successfully");
   }
@@ -50,5 +54,19 @@ export class AssignmentsService {
     console.log("Deleting an assignment through service ....")
     this.assignments.splice(this.assignments.indexOf(assignment),1);
     return of("The assignment has been deleted successfully!!");
+  }
+
+  getAssignmentById(id:number):Observable<Assignment|undefined>{
+    let assignment = this.assignments.find(a => a.id == id)
+
+    return of(assignment);
+
+  }
+
+
+  updateAssignmentData(assignment:Assignment):Observable<string>{
+    console.log("The assignment data has been updated");
+
+    return of("The assignment data has been updated");
   }
 }

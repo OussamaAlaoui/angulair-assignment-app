@@ -11,21 +11,7 @@ export class AssignmentsComponent implements OnInit {
   titre = 'Asignment Management';
   // ajoutActive = true; // this is related to the view so when we change it will change it
   assignments: Assignment[] = [
-    {
-      name: 'Devoir Angular 1',
-      dueDate: new Date('2022-01-23'),
-      due: false,
-    },
-    {
-      name: 'Devoir Angular 2',
-      dueDate: new Date('2022-01-23'),
-      due: false,
-    },
-    {
-      name: 'Devoir Angular 3',
-      dueDate: new Date('2022-01-23'),
-      due: true,
-    },
+   
   ];
   formVisible: boolean = false;
   nameAssignment: string = '';

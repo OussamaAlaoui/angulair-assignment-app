@@ -1,0 +1,19 @@
+
+.actions{
+
+}
+.card-header{
+    display: flex;
+justify-content: space-between;
+    /* margin: 5 auto; */
+}
+.editBtn{
+    /* justify-self: end; */
+}
+
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+
+}
