@@ -1,28 +1,33 @@
 <h1>Details</h1>
 
 <mat-card *ngIf="transmittedAssignment">
+  <div class="card-header">
+    <h1>{{ transmittedAssignment.name }}</h1>
 
-    <div class="card-header">
-
-        <h1>{{transmittedAssignment.name}}</h1>
-
-        <div class="editBtn">
-
-            <button [routerLink]="['/assignment', transmittedAssignment.id ,'edit']" mat-mini-fab color="primary">
-                <mat-icon>edit</mat-icon>
-            </button></div>
-
+    <div class="editBtn">
+      <button (click)="onClickEdit()" mat-mini-fab color="primary">
+        <mat-icon>edit</mat-icon>
+      </button>
     </div>
-    <div class="card-body">
-        <mat-card-subtitle>{{transmittedAssignment.dueDate}}</mat-card-subtitle>
-        <div class="actions">
-            <mat-checkbox *ngIf="!transmittedAssignment.due"
-                (click)="checkAssignment()">The assignment is returned
-            </mat-checkbox>
-
-        </div><br>
-
-        <button class="button-delete" mat-flat-button color="warn"
-            (click)="onDelete(transmittedAssignment)">Delete</button>
+  </div>
+  <div class="card-body">
+    <mat-card-subtitle>{{ transmittedAssignment.dueDate }}</mat-card-subtitle>
+    <div class="actions">
+      <mat-checkbox
+        *ngIf="!transmittedAssignment.due"
+        (click)="checkAssignment()"
+        >The assignment is returned
+      </mat-checkbox>
     </div>
+    <br />
+
+    <button
+      class="button-delete"
+      mat-flat-button
+      color="warn"
+      (click)="onDelete(transmittedAssignment)"
+    >
+      Delete
+    </button>
+  </div>
 </mat-card>

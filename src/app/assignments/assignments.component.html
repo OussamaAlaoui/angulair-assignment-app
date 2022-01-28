@@ -1,12 +1,16 @@
 <div class="container">
-  <h1><b>{{ titre }}</b> </h1>
-  <button class="addButton" mat-raised-button color="primary" routerLink="/add">Add new Assignment</button>
+  <h1>
+    <b>{{ titre }}</b>
+  </h1>
+  <button class="addButton" mat-raised-button color="primary" routerLink="/add">
+    Add new Assignment
+  </button>
   <span>
     <h1>Assignment's List</h1>
-    <mat-list *ngFor="let assignment of assignments; let i= index">
+    <mat-list *ngFor="let assignment of assignments; let i = index">
       <nav>
-        <a routerLink="/assignment/{{assignment.id}}">
-          <h3 mat-subheader> {{ assignment.dueDate | date :'short'}}</h3>
+        <a routerLink="/assignment/{{ assignment.id }}">
+          <h3 mat-subheader>{{ assignment.dueDate | date: "short" }}</h3>
           <div class="list-items">
             <mat-list-item>
               <p appRendu *ngIf="assignment.due; else nonsoumis">
@@ -18,10 +22,8 @@
                 </p>
               </ng-template>
             </mat-list-item>
-           
           </div>
         </a>
-
       </nav>
       <mat-divider></mat-divider>
     </mat-list>
