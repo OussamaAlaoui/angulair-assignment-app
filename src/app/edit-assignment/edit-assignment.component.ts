@@ -22,8 +22,8 @@ export class EditAssignmentComponent implements OnInit {
 
   ngOnInit(): void {
     // getting the parameters
-    console.log("Query params :---------");
-    console.log(this.route.snapshot.queryParams);
+    //console.log("Query params :---------");
+    //console.log(this.route.snapshot.queryParams);
 
 
 
@@ -49,7 +49,7 @@ export class EditAssignmentComponent implements OnInit {
       });
     // this.assignmentService.updateAssignmentData(this.assignment).subscribe(message =>{
 
-    //   console.log(message);
+    //   //console.log(message);
     //   this.router.navigate(["/home"]);
     // })
   }

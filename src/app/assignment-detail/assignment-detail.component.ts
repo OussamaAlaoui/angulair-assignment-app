@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Assignment } from '../assignments/assignment.model';
 import { AssignmentsService } from '../shared/assignments.service';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -16,13 +17,14 @@ export class AssignmentDetailComponent implements OnInit {
   constructor(
     private assignmentService: AssignmentsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
   assignmentDelete?: Assignment = undefined;
   ngOnInit(): void {
-    // console.log("Transmitted Assignment= "+ this.transmittedAssignment)
+    // //console.log("Transmitted Assignment= "+ this.transmittedAssignment)
     const id: number = +this.route.snapshot.params['id'];
-    console.log('id=' + id);
+    //console.log('id=' + id);
 
     this.assignmentService
       .getAssignmentById(id)
@@ -33,14 +35,14 @@ export class AssignmentDetailComponent implements OnInit {
       this.assignmentService
         .updateAssignment(this.transmittedAssignment)
         .subscribe((message) => {
-          console.log(message);
+          //console.log(message);
           this.router.navigate(['/home']);
         });
     // this.transmittedAssignment.due=true;
   }
   onDelete(assignment: Assignment) {
     this.assignmentService.deleteAssignment(assignment).subscribe((message) => {
-      console.log(message);
+      //console.log(message);
       this.router.navigate(['/home']);
     });
   }
@@ -57,5 +59,8 @@ export class AssignmentDetailComponent implements OnInit {
         fragment: 'edition',
       }
     );
+  }
+  isAdmin(){
+    return !this.authService.loggedIn;
   }
 }
