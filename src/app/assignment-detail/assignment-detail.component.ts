@@ -22,9 +22,7 @@ export class AssignmentDetailComponent implements OnInit {
   ) {}
   assignmentDelete?: Assignment = undefined;
   ngOnInit(): void {
-    // //console.log("Transmitted Assignment= "+ this.transmittedAssignment)
     const id: number = +this.route.snapshot.params['id'];
-    //console.log('id=' + id);
 
     this.assignmentService
       .getAssignmentById(id)
@@ -34,15 +32,14 @@ export class AssignmentDetailComponent implements OnInit {
     if (this.transmittedAssignment != null)
       this.assignmentService
         .updateAssignment(this.transmittedAssignment)
-        .subscribe((message) => {
-          //console.log(message);
+        .subscribe((response) => {
+          console.log(response.message);
           this.router.navigate(['/home']);
         });
-    // this.transmittedAssignment.due=true;
   }
   onDelete(assignment: Assignment) {
-    this.assignmentService.deleteAssignment(assignment).subscribe((message) => {
-      //console.log(message);
+    this.assignmentService.deleteAssignment(assignment).subscribe((response) => {
+      console.log(response.message);
       this.router.navigate(['/home']);
     });
   }
@@ -60,7 +57,7 @@ export class AssignmentDetailComponent implements OnInit {
       }
     );
   }
-  isAdmin(){
+  isAdmin() {
     return !this.authService.loggedIn;
   }
 }
