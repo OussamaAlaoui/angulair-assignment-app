@@ -17,7 +17,11 @@ export class AddAssignmentComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
+<<<<<<< HEAD
 
+=======
+    //console.log(this.nameAssignment);
+>>>>>>> d86fa5743c48fd3a3a36e93ce18cc7eb35b59f85
     if (this.nameAssignment && this.dueDate) {
       let newAssignment = new Assignment();
       newAssignment.id = Math.floor((Math.random() * 100) + 1);
@@ -26,13 +30,21 @@ export class AddAssignmentComponent implements OnInit {
       newAssignment.due = false;
 
       this.assignmentService.addAssignment(newAssignment).subscribe(message => {
+<<<<<<< HEAD
 
+=======
+        //console.log(message);
+>>>>>>> d86fa5743c48fd3a3a36e93ce18cc7eb35b59f85
         this.router.navigate(["/home"]);
       });
       }
   }
   assignmentClick(assignment:Assignment){
+<<<<<<< HEAD
 
+=======
+    //console.log("This assignment was clicked: ", assignment.name)
+>>>>>>> d86fa5743c48fd3a3a36e93ce18cc7eb35b59f85
     this.selectedAssignment=assignment;
   }
 }
