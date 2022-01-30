@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { unescapeIdentifier } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, pipe, tap } from 'rxjs';
+import { catchError, forkJoin, map, Observable, of, pipe, tap } from 'rxjs';
 import { Assignment } from '../assignments/assignment.model';
+import { dbInitialAssignments } from './data';
 // this means that we can inject this object in the constructor of the component where it will be used
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,9 @@ import { Assignment } from '../assignments/assignment.model';
 // a service manage data
 export class AssignmentsService {
   assignments: Assignment[] = [];
-  // url ="http://localhost:8010/api/assignments";
-  url = 'https://my-first-angular-website.herokuapp.com/api/assignments';
+  url = 'http://localhost:8010/api/assignments';
+  //url = 'https://my-first-angular-website-be.herokuapp.com/api/assignments';
+
   constructor(private http: HttpClient) {}
   // to send the list of assignments
   getAssignments(): Observable<Assignment[]> {
@@ -27,6 +29,12 @@ export class AssignmentsService {
       catchError(this.handleError<any>("!!! you can't get all the daata"))
     );
   }
+  getAssignmentsPagination(page:number,limit:number): Observable<any> {
+
+    // any because it returns an Object
+    return this.http.get<any>(this.url+"?page="+page+"&limit="+limit);
+  }
+
   addAssignment(assignment: Assignment): Observable<any> {
     //console.log("Adding an assignment through service ....")
     // console.log(assignment);
@@ -45,10 +53,7 @@ export class AssignmentsService {
   }
 
   deleteAssignment(assignment: Assignment): Observable<any> {
-    //console.log("Deleting an assignment through service ....")
-    // this.assignments.splice(this.assignments.indexOf(assignment), 1);
     return this.http.delete(this.url + '/' + assignment._id);
-    // return of('The assignment has been deleted successfully!!');
   }
 
   getAssignmentById(id: number): Observable<Assignment | undefined> {
@@ -78,9 +83,28 @@ export class AssignmentsService {
     };
   }
 
-  // updateAssignmentData(assignment: Assignment): Observable<string> {
-  //   //console.log("The assignment data has been updated");
+  insertData(): Observable<any> {
+    const callAddAssignments: any = [];
+    dbInitialAssignments.forEach((a) => {
+      // console.log(a.dueDate )
+      let newAssignment = new Assignment();
+      newAssignment.id = a.id;
+      newAssignment.name = a.name;
+      newAssignment.dueDate = new Date(a.dueDate);
+      newAssignment.due = a.due;
 
-  //   return of('The assignment data has been updated');
-  // }
+      callAddAssignments.push(this.addAssignment(newAssignment));
+    });
+
+    return forkJoin(callAddAssignments);
+  }
+  deleteAllAssignments() {
+    let assignments = this.getAssignments().subscribe((a) => {
+      a.forEach((element) => {
+        this.deleteAssignment(element).subscribe((response) => {
+          console.log(response.message);
+        });
+      });
+    });
+  }
 }

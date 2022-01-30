@@ -24,8 +24,12 @@ import { EditAssignmentComponent } from './edit-assignment/edit-assignment.compo
 import { AuthGuard } from './shared/auth.guard';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle'
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
-
+import { MatMenuModule } from '@angular/material/menu';
 const routes: Routes =[
   {
     path:'',
@@ -77,7 +81,12 @@ const routes: Routes =[
     MatCheckboxModule,
     RouterModule.forRoot(routes),
     MatSlideToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
