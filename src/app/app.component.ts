@@ -22,6 +22,7 @@ export class AppComponent {
     private http: HttpClient,
     private assignmentService: AssignmentsService
   ) {}
+
   onLogin() {
     if (this.authService.loggedIn) {
       this.authService.logout();

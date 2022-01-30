@@ -22,17 +22,25 @@ export class AssignmentsService {
     // observable function
 
     return this.http.get<Assignment[]>(this.url).pipe(
-      map((_) => {
-        console.log('hello', _);
-        return _;
+      map((a) => {
+        console.log('hello', a);
+        return a;
       }),
-      catchError(this.handleError<any>("!!! you can't get all the daata"))
+      catchError(this.handleError<any>("!!! ERROR CONNECTING TO THE SERVER"))
     );
   }
   getAssignmentsPagination(page:number,limit:number): Observable<any> {
 
     // any because it returns an Object
-    return this.http.get<any>(this.url+"?page="+page+"&limit="+limit);
+    return this.http
+      .get<any>(this.url + '?page=' + page + '&limit=' + limit)
+      .pipe(
+        map((_) => {
+          console.log('hello', _);
+          return _;
+        }),
+        catchError(this.handleError<any>('!!! ERROR CONNECTING TO THE SERVER'))
+      );
   }
 
   addAssignment(assignment: Assignment): Observable<any> {
@@ -99,7 +107,8 @@ export class AssignmentsService {
     return forkJoin(callAddAssignments);
   }
   deleteAllAssignments() {
-    let assignments = this.getAssignments().subscribe((a) => {
+    this.getAssignments().subscribe((a) => {
+      // console.log("########3"+a.message);
       a.forEach((element) => {
         this.deleteAssignment(element).subscribe((response) => {
           console.log(response.message);

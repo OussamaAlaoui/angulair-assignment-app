@@ -5,12 +5,13 @@
 }
   * {
     margin: 0;
-    padding: 0;
+
     box-sizing: border-box;
       text-decoration: none;
       max-height: 100vh;
-       overflow-y:scroll;
+
   }
+  
 .nonRendu {
   color: red;
   background-color: yellow;
@@ -29,6 +30,7 @@ img {
 }
 mat-sidenav-content{
   margin-left: 8vw;
+         overflow-y:scroll;
 }
 .addButton {
   align-self: flex-end;
@@ -183,21 +185,24 @@ padding-top: 20px;
   /* background-color: #dd2131; */
   /* background-color: ; */
 } 
-ul a {
-  padding: 10px 40px 10px 10px;
-  /* padding: 5px; */
+li a {
 
+padding: 20px;
   color: black;
   font-size: 20px;
-
+background-color: rgba(128, 128, 128, 0.363);
   border-radius: 10px  0px  0px  10px;
   text-decoration: none;
 }
-ul a:hover {
+li a:hover {
+  /* padding: 20px; */
+
    background-color: #dd2131;
 color: white;
 }
 
-.navSlides {
-  margin-top: 5vh;
+.navSlides {  
+
+
+  margin-top: 5vh;   border-radius: 10px  0px  0px  10px;
 }

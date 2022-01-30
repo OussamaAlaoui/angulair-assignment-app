@@ -1,21 +1,13 @@
-<h1>Add Assignment Form</h1>
-  <!-- <div
-    *ngFor="let assignment of assignments; let i = index"
-    [ngStyle]="{ color: !assignment.due ? 'red' : 'green' }"
-  > -->
-  <!-- <form ngForm #assignmentForm>
-    <button mat-stroked-button color="primary" [disabled]="ajoutActive">
-      Ajouter un devoir
-    </button> 
-  </form> -->
+<div class="container">
+
+<h1>Add New Assignment</h1>
+
+  <mat-card>
   <form
     ngForm
     #assignmentForm
     class="form"
     (click)="onSubmit(); assignmentForm.reset()">
-    <!-- to reset the form we add the reset all the inputs are null after 
-    #assignmentForm is the name of the form 
-  it is better to use on submit on the form -->
     <mat-form-field>
       <input
         matInput
@@ -36,6 +28,8 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button mat-stroked-button color="primary" >Ajouter un devoir</button>
+    <button mat-flat-button color="primary" >Ajouter un devoir</button>
   </form>
   <br />
+</mat-card>
+</div>

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
 
@@ -25,10 +25,16 @@ export class AssignmentsComponent implements OnInit {
   prevPage?: number;
   hasNextPage?: boolean;
   nextPage?: number;
+  connectionError?: boolean;
+  MenuTitle = 'Number of Docs';
+  isLoading: boolean = true;
+  isHome:boolean=true;
   menuListItems?: number[] = [10, 25, 50, 100];
-  clickMenuItem(item:number){
-    this.limit=item;
-       this.getAssignments();
+  clickMenuItem(item: number) {
+    this.MenuTitle = 'Number of Docs';
+    this.MenuTitle += ' ' + item.toString();
+    this.limit = item;
+    this.getAssignments();
   }
   displayedColumns: string[] = [
     'check',
@@ -48,12 +54,17 @@ export class AssignmentsComponent implements OnInit {
   constructor(
     private assignmentsService: AssignmentsService,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
   selectedAssignment?: Assignment = undefined;
   ngOnInit(): void {
     this.getAssignments();
-
+  
+    // console.log("////////////"+this.router.url);
+  if (this.router.url == 'home' || this.router.url == '') {
+    this.isHome = true;
+  } else this.isHome = false;
     // this.pages;
   }
 
@@ -66,6 +77,8 @@ export class AssignmentsComponent implements OnInit {
     this.assignmentsService
       .getAssignmentsPagination(this.page, this.limit)
       .subscribe((data) => {
+        if (data == undefined) {this.connectionError = true;        this.isLoading = false;}
+        else if (data.totalDocs == 0) console.log('No data found!!');
         this.assignments = data.docs;
         this.page = data.page;
         this.limit = data.limit;
@@ -77,9 +90,10 @@ export class AssignmentsComponent implements OnInit {
         this.nextPage = data.nextPage;
         console.log('We got the data!!! -- limit=' + this.limit);
         this.assignments = data.docs;
+        this.isLoading = false;
       });
   }
-  getDetails(assignment: Assignment) {}
+
   firstPageBtn() {
     if (this.prevPage) this.page = 1;
     this.getAssignments();

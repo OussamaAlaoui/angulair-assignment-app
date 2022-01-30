@@ -1,87 +1,61 @@
 <div class="container">
   <span class="tableContainer">
-    <!-- <h1>Assignment's List</h1>
-    <h3>current page: {{ page }}</h3>
-    <h3>Number of docs: {{ totalDocs }}</h3>
-    <h3>Number of pages: {{ totalPages }}</h3> -->
-    <!-- 
-    <h3 *ngIf="hasPrevPage">Prev page: {{ prevPage }}</h3>
-    <h3 *ngIf="hasNextPage">Next page: {{ nextPage }}</h3> -->
-    <!-- 
-    Change page:
-    <input
-      type="range"
-      min="1"
-      max="99"
-      (change)="getAssignments()"
-      [(ngModel)]="page"
-    />
-    {{ page }}<br /> -->
-    <!-- <p>
-      Change Docs Limits :
-      <input
-        type="range"
-        min="1"
-        max="1000"
-        value="limit"
-        (change)="getAssignments()"
-        [(ngModel)]="limit"
-      />
-      {{ limit }}
-    </p> -->
-    <!-- <button mat-button color="primary" (click)="onSubmit()">OK</button> -->
-
-    <div class="paginationBtn">
-      <!-- <button
-        mat-raised-button
-        color="primary"
-        (click)="firstPageBtn()"
-        [disabled]="page === 1"
-      >
-        Jump to first Page
-      </button> -->
-      <!-- <button
-        mat-raised-button
-        color="primary"
-        (click)="lastPageBtn()"
-        [disabled]="page === totalPages"
-      >
-        Jump to last Page
-      </button> -->
-    </div>
+    <div class="paginationBtn"></div>
     <div class="table-header">
-    <p>{{totalDocs}} Assignment Available</p>
+      <div class="left">
+        <p>{{ totalDocs }} Assignment Available</p>
 
-  <button mat-flat-button 
-          [matMenuTriggerFor]="clickmenu">
-          Number of docs
-  </button>
-  <span>Selected Menu </span>
+        <button mat-flat-button class="menuBtn" [matMenuTriggerFor]="clickmenu">
+          {{ MenuTitle }}<i class="arrow down"></i>
+        </button>
 
-
-<mat-menu #clickmenu="matMenu">
-  <button mat-menu-item 
-          *ngFor="let item of menuListItems" 
-          (click)="clickMenuItem(item)" 
->
-
-    <p> {{ item }}</p>
-  </button>
-</mat-menu>   
- <button
-            class="addButton"
-            mat-raised-button
-            color="primary"
-            routerLink="/add"
+        <mat-menu #clickmenu="matMenu">
+          <button
+            mat-menu-item
+            *ngFor="let item of menuListItems"
+            (click)="clickMenuItem(item)"
           >
-            + Add new
-          </button></div>
-    <div *ngIf="assignments.length == 0; else list_assignment">
-      No Assignment found !
+            <p>{{ item }}</p>
+          </button>
+        </mat-menu>
+      </div>
+
+      <button
+        class="addButton"
+        mat-raised-button
+        color="primary"
+        routerLink="/add"
+        [disabled]="connectionError || isLoading"
+      >
+        + Add new
+      </button>
     </div>
+    <div *ngIf="isLoading; else serverError" class="loading">
+
+      <mat-spinner color="warn"></mat-spinner>
+    </div>
+    <ng-template #serverError>
+    
+    <div *ngIf="connectionError == true; else noData" class="no-data-found">
+      <img src="../../assets/images/NoData.png" alt="" />
+      <p>We could not connect to the server!</p>
+      <p>try again later ;)</p>
+    </div>
+
+    </ng-template>
+
+
+    <ng-template #noData> <div
+      *ngIf="assignments.length == 0 && !connectionError; else list_assignment"
+      class="no-data-found"
+    >
+      <img src="../../assets/images/NoData.png" alt="" />
+      <p>No Data Found !!</p>
+    </div></ng-template>
+    
+   
     <div>
       <ng-template #list_assignment>
-      
         <div class="table_background">
           <table mat-table [dataSource]="assignments">
             <!-- check box -->
@@ -91,7 +65,8 @@
               <td mat-cell *matCellDef="let element">
                 <input type="checkbox" />
               </td>
-            </ng-container>    <ng-container matColumnDef="more">
+            </ng-container>
+            <ng-container matColumnDef="more">
               <th mat-header-cell *matHeaderCellDef>Details</th>
               <td mat-cell *matCellDef="let element">
                 <button
@@ -108,7 +83,7 @@
               <th mat-header-cell *matHeaderCellDef>Id</th>
               <td mat-cell *matCellDef="let element">{{ element.id }}</td>
             </ng-container>
-        
+
             <!-- Name Column -->
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -164,57 +139,48 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
-      <div class="pagination-tools">
-          <div class="navigation">
-
-
-
-
-
-            <button
-              mat-raised-button
-              color="primary"
-              class="arrowBtn"
-              (click)="firstPageBtn()"
-              [disabled]="!hasPrevPage"
-            >
-              &laquo;
-            </button>
-            <button
-              mat-raised-button
-              color="primary"
-              class="arrowBtn"
-              (click)="prevPageBtn()"
-              [disabled]="!hasPrevPage"
-            >
-              &#8249;
-            </button>
-          {{page}} of {{totalPages}}
-            <!-- <div>{{page}} of {{totalPages}}</div> -->
-            <button
-              mat-raised-button
-              color="primary"
-              class="arrowBtn"
-              (click)="nextPageBtn()"
-              [disabled]="!hasNextPage"
-            >
-              &#8250;
-            </button>
-           <button
-              mat-raised-button
-              color="primary"
-              class="arrowBtn"
-              (click)="lastPageBtn()"
-              [disabled]="!hasNextPage"
-            >
-              &raquo;
-            </button>
-
+          <div class="pagination-tools">
+            <div class="navigation">
+              <button
+                mat-raised-button
+                color="primary"
+                class="arrowBtn"
+                (click)="firstPageBtn()"
+                [disabled]="!hasPrevPage"
+              >
+                &laquo;
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                class="arrowBtn"
+                (click)="prevPageBtn()"
+                [disabled]="!hasPrevPage"
+              >
+                &#8249;
+              </button>
+              {{ page }} of {{ totalPages }}
+              <!-- <div>{{page}} of {{totalPages}}</div> -->
+              <button
+                mat-raised-button
+                color="primary"
+                class="arrowBtn"
+                (click)="nextPageBtn()"
+                [disabled]="!hasNextPage"
+              >
+                &#8250;
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                class="arrowBtn"
+                (click)="lastPageBtn()"
+                [disabled]="!hasNextPage"
+              >
+                &raquo;
+              </button>
+            </div>
           </div>
-
-         
-        </div>
-
         </div>
         <!-- <mat-list *ngFor="let assignment of assignments; let i = index">
         <nav>

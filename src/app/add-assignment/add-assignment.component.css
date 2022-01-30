@@ -13,6 +13,8 @@
     margin: 5px;
   }
   .container{
-    margin: 20px;
+    width: 50%;
+
+    margin: 20% auto;
   }
   
