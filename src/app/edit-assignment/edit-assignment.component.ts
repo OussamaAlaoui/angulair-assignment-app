@@ -22,9 +22,11 @@ export class EditAssignmentComponent implements OnInit {
 
   ngOnInit(): void {
     let id = +this.route.snapshot.params['id'];
+
     this.assignmentService.getAssignmentById(id).subscribe((assignment) => {
       if (assignment) {
         this.assignment = assignment;
+            console.log(assignment);
         this.assignmentName = assignment?.name;
         this.dueDate = assignment?.dueDate;
       }
@@ -34,15 +36,17 @@ export class EditAssignmentComponent implements OnInit {
     let id = +this.route.snapshot.params['id'];
     let newAssignment = new Assignment();
 
-    if (this.assignment && this.dueDate)    
-    newAssignment.dueDate= this.dueDate;
-    newAssignment.name = this.assignmentName;
+    if (this.assignment && this.dueDate)    {
+          this.assignment.dueDate= this.dueDate;
+     this.assignment.name = this.assignmentName;
       this.assignmentService
-        .updateAssignment(newAssignment)
+        .updateAssignment(this.assignment)
         .subscribe((response) => {
           console.log(response.message);
             this.router.navigate(['/home']);
           }
         );
+    }
+
   }
 }

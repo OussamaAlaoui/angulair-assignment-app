@@ -1,6 +1,7 @@
+
 <div class="container" *ngIf="assignment">
-  <h1>Edition de l'assignment {{ assignment.name }}</h1>
-  <form ngForm class="form">
+ <h1>Editing Assignment:  {{ assignment.id }}</h1>
+ <mat-card>  <form ngForm class="form">
     <mat-form-field>
       <input
         matInput
@@ -25,5 +26,6 @@
     <button mat-raised-button color="primary" (click)="onSaveAssignment()">
       Sauver
     </button>
-  </form>
+  </form></mat-card>
 </div>
+

@@ -31,6 +31,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 const routes: Routes =[
   {
     path:'',
@@ -90,8 +92,11 @@ const routes: Routes =[
     MatMenuModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    MatSortModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

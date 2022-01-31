@@ -21,13 +21,7 @@ export class AssignmentsService {
     // so we will not send the data but we will send an object "Observable"
     // observable function
 
-    return this.http.get<Assignment[]>(this.url).pipe(
-      map((a) => {
-        console.log('hello', a);
-        return a;
-      }),
-      catchError(this.handleError<any>("!!! ERROR CONNECTING TO THE SERVER"))
-    );
+    return this.http.get<Assignment[]>(this.url);
   }
   getAssignmentsPagination(page:number,limit:number): Observable<any> {
 
@@ -52,12 +46,10 @@ export class AssignmentsService {
   }
 
   updateAssignment(assignment: Assignment): Observable<any> {
-    //console.log("updating an assignment through service ....")
-    // assignment.name=
-    // console.log("---------------------"+assignment);
+    console.log(assignment);
+    assignment.due=true;
     return this.http.put(this.url, assignment);
-    // assignment.due = true;
-    // return of('the assignment has been updated successfully');
+ 
   }
 
   deleteAssignment(assignment: Assignment): Observable<any> {
@@ -68,7 +60,7 @@ export class AssignmentsService {
     // let assignment = this.assignments.find((a) => a.id == id);
     return this.http.get<Assignment>(this.url + '/' + id).pipe(
       map((a) => {
-        a.name += ' passed by pipe';
+
         return a;
       }),
       catchError(

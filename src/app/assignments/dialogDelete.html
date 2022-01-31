@@ -1,0 +1,11 @@
+
+
+<h2 >⚠️<br> Delete Assignment : {{assignment?.id}} ?</h2>
+<div mat-dialog-content>
+  <p>Are you sure you want to delete this Assignment permanently?</p>
+</div>
+<div mat-dialog-actions>
+  <button class="dialogBtn"  (click)="onNoClick()">Cancel</button>
+
+  <button  class="dialogBtnDelete" cdkFocusInitial (click)="onDeleteAssignment(assignment)">🗑 Delete</button>
+</div>

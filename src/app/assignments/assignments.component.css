@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
+
 .container{
   margin-top: 3%;
 }
@@ -46,6 +47,7 @@ table {
 }
 .arrowBtn {
   font-size: 25px;
+  background-color: #fbb13c;
 }
 .pagination-tools {
   display: flex;
@@ -203,6 +205,7 @@ ul a:hover {
 .menuBtn {
   background-color: #fbb13c;
   margin-left: 10px;
+  color: black;
 }
 .arrow {
   border: solid black;
@@ -237,4 +240,84 @@ ul a:hover {
   margin-top: 20%;
   align-self: center;
 
+}
+
+
+
+
+button {
+    border: none;
+}
+
+button:focus {
+    border: none;
+    outline: none;
+}
+
+button:focus{
+    outline:none !important;
+}
+
+.dialogBtn{
+  background-color: white;
+  font-size: 16px;
+  margin: 5px;
+      padding: 10px;
+}
+
+.dialogBtn:hover{
+  cursor: pointer;
+  background-color: rgb(187, 187, 187);
+  border-radius: 20px;
+}
+.dialogBtnDelete{
+  background-color:#ff4353;
+    font-size: 16px;
+    color: white;
+    padding: 10px;
+  margin: 5px;
+  border-radius: 20px;
+}
+.dialogBtnDelete:hover{
+    cursor: pointer;
+  background-color:#d10516;
+  color: white;
+
+
+}
+th{
+  font-size: 16px;
+  color: black;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.toggle{
+  display: flex;
+  flex-direction: column;
+justify-content: center;
+
+}
+.toggle button{
+  align-self: center;
+  justify-self: center;
 }

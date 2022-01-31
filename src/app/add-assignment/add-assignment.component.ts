@@ -31,7 +31,7 @@ export class AddAssignmentComponent implements OnInit {
       this.assignmentService
         .addAssignment(newAssignment)
         .subscribe((response) => {
-          this._snackBar.open(response.message, '', {
+          this._snackBar.open(response.message, "Close", {
             duration: 2000,
             panelClass: ['green-snackbar'],
           });

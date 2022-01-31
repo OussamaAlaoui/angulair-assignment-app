@@ -1,0 +1,20 @@
+
+
+<div class="toggle"></div>
+<h1 mat-dialog-title>⚠️ Delete <b style="color: red;">{{assignments?.length}}</b>  Assignment?  </h1>
+   <div *ngIf="isLoading; else serverError" class="loading">
+        <div class="loader"></div>
+    </div>
+
+
+
+<div mat-dialog-content>
+  <p>Are you sure want to delete these Assignments permanently?</p>
+</div>
+<div mat-dialog-actions>
+    <button  class="dialogBtnDelete" cdkFocusInitial (click)="onDeleteAssignment()">🗑 Delete {{count}}</button>
+<br>
+  <button class="dialogBtn"  (click)="onNoClick()">Cancel</button>
+
+</div>
+

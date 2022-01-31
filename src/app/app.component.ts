@@ -13,7 +13,7 @@ import { AuthService } from './shared/auth.service';
 })
 export class AppComponent {
   // for properties and methods
-
+  
   nameDev = 'Oussama Alaoui Ismaili'; // this is a model
   titre = 'Assignment Management Project';
   constructor(
@@ -30,13 +30,6 @@ export class AppComponent {
     } else this.authService.login();
   }
 
-  initializeData() {
-    this.assignmentService.insertData().subscribe((message) => {
-      console.log('ALL ASSIGNMENT ARE ADDED');
-      window.location.reload();
-      // this.router.navigate(["/home"],{replaceUrl:true});
-    });
-  }
   deleteAll() {
     this.assignmentService.deleteAllAssignments();
   }
