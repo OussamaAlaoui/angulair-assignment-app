@@ -14,6 +14,7 @@ L’application est un site web pour la gestion des “assignments”, où l’u
     * Après la confirmation d’ajout du nouveau assignment l’utilisateur est dirigé vers la page qui contient la liste des assignments
     * Si l’ajout est réussi l’utilisateur reçoit un petit message ou “popup” en vert qui confirme ça
 ### **Le tableau des assignments:**
+
 * Première colonne permet l’utilisateur de cocher plusieurs elements aussi ou de cocher tous les éléments de la liste en cliquant sur le checkbox dans le titre de la colonne
 * Deuxième colonne affiche un bouton qui dirige l’utilisateur vers une autre page qui affiche les détailles de l'assignement choisi
 * Troisième colonne affiche l’identifiant unique de l'élément
@@ -22,6 +23,7 @@ L’application est un site web pour la gestion des “assignments”, où l’u
 * Sixième affiche si l’assignment a été rendu ou non
 * Septième a un bouton pour supprimer l'élément
 * Dernière contient le bouton qui dirige l’utilisateur vers la page de modifications des information d'élément
+* Dans les titres de la colonne du nom et de la date de rendu l'utilisateur peut cliquer sur un de c'est deux pour exécuter un tri des éléments de tableau
 
 ### le footer de tableau
 * il contient quatre bouton deux pour naviguer entre la page prochaine et la page précédente si il y a une sinon il sont grisés
