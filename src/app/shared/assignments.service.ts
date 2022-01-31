@@ -11,8 +11,8 @@ import { dbInitialAssignments } from './data';
 // a service manage data
 export class AssignmentsService {
   assignments: Assignment[] = [];
-  url = 'http://localhost:8010/api/assignments';
-  //url = 'https://my-first-angular-website-be.herokuapp.com/api/assignments';
+  // url = 'http://localhost:8010/api/assignments';
+  url = 'https://my-first-angular-website-be.herokuapp.com/api/assignments';
 
   constructor(private http: HttpClient) {}
   // to send the list of assignments
